@@ -1,0 +1,60 @@
+{
+  "name": "talha-portfolio",
+  "version": "1.0.0",
+  "description": "Premium developer portfolio for Talha Khan. Architected with a terminal-inspired tech aesthetic to showcase low-level firmware engineering, embedded systems (STM32, FreeRTOS), bare-metal computing, microservices, and multi-node HomeLAB virtualization clusters.",
+  "keywords": [
+    "embedded-systems",
+    "firmware-engineering",
+    "stm32",
+    "freertos",
+    "homelab",
+    "kubernetes",
+    "nextjs15",
+    "tailwind-v4",
+    "shadcn-ui",
+    "typescript-portfolio"
+  ],
+  "private": true,
+  "author": {
+    "name": "Haris Khan",
+    "email": "developewithharis@gmail.com",
+    "url": "https://hariskhan.vercel.app/",
+    "description": "A passionate software developer specializing in web development, with a strong focus on Next.js and Tailwind CSS. With a keen eye for design and a commitment to creating seamless user experiences, I bring ideas to life through clean, efficient code. My portfolio showcases a range of projects that highlight my expertise in building responsive, high-performance websites and applications. I am dedicated to continuous learning and staying up-to-date with the latest industry trends to deliver innovative solutions that exceed client expectations."
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@radix-ui/react-avatar": "^1.1.10",
+    "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-tabs": "^1.1.13",
+    "@radix-ui/react-tooltip": "^1.2.8",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@react-three/rapier": "^2.2.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "contentful": "^11.12.4",
+    "lucide-react": "^0.544.0",
+    "meshline": "^3.3.1",
+    "next": "^15.5.19",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "recharts": "^3.2.1",
+    "tailwind-merge": "^3.3.1",
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.184.1",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
