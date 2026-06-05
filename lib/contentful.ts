@@ -27,8 +27,7 @@ export async function FetchCertification() {
 
   const res = await client.getEntries({ content_type: "certifications" });
 
-  const certification = res.items[0];
-  return {
+  return res.items.map((certification) => ({
     name: certification.fields.name as string,
     issuer: certification.fields.issuer as string,
     certificateUrl: certification.fields.certificateUrl as string,
@@ -37,19 +36,18 @@ export async function FetchCertification() {
     certificateMedia:
       ((certification.fields.certificateMedia as Asset)?.fields?.file
         ?.url as string) ?? "",
-  };
+  }));
 }
 export async function FetchSkills() {
   noStore();
 
   const res = await client.getEntries({ content_type: "skills" });
-
-  const skills = res.items[0];
-  return {
+  return res.items.map((skills) => ({
     category: skills.fields.name as string,
     icon: skills.fields.icon as string,
     skillsName: skills.fields.skillsName as string[],
-  };
+    skillImage: skills.fields.skillsImage as Asset,
+  }));
 }
 
 export async function FetchEducation() {
@@ -73,7 +71,7 @@ export async function FetchProjects() {
   const res = await client.getEntries({ content_type: "projects" });
   return res.items.map((item) => ({
     projectName: item.fields.projectName as string,
-    category:  item.fields.categoriesId as { name: string; icon: string }[],
+    category: item.fields.categoriesId as { name: string; icon: string }[],
     projectDescription: item.fields.projectDescription as string,
     techStack: item.fields.techStack as string[],
     milestones: item.fields.milestones as string[],
@@ -104,9 +102,8 @@ export async function FetchCategories() {
 
   const res = await client.getEntries({ content_type: "categories" });
 
-  const skills = res.items[0];
-  return {
-    name: skills.fields.name as string,
-    icon: skills.fields.icon as string,
-  };
+  return res.items.map((c) => ({
+    name: c.fields.name as string,
+    icon: c.fields.icon as string,
+  }));
 }

@@ -1,21 +1,18 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Award,
-  Code as Code2,
-  Package,
-  ExternalLink,
-} from "lucide-react";
+import { Award, Code as Code2, Package, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 import React from "react";
 import { DynamicIcon } from "./dynamic-icon";
+import { Asset } from "contentful";
 
 export type SkillsItems = {
   category: string;
   icon: string;
   skillsName: string[];
+  skillImage: Asset;
 }[];
 type CertificateItem = {
   name: string;

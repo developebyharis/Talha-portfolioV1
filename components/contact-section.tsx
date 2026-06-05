@@ -15,6 +15,8 @@ import Link from "next/link";
 import { SkillsItems } from "./skills-section";
 import { ProjectItem } from "./projects-section";
 import InterectiveTerminal from "./interectiveTerminal";
+import DomeGallery from "./DomeGallery";
+import { getContentfulAssetUrl } from "@/lib/utils";
 export type aboutMeProp = {
   name: string;
   title: string;
@@ -26,11 +28,9 @@ export type aboutMeProp = {
 export function ContactSection({
   aboutMe,
   skillsData,
-  projectsData,
 }: {
   aboutMe: aboutMeProp;
   skillsData: SkillsItems;
-  projectsData: ProjectItem;
 }) {
   const contactMethods = [
     {
@@ -55,90 +55,18 @@ export function ContactSection({
       color: "text-blue-500",
     },
   ];
+ 
 
-  const [terminalLines, setTerminalLines] = useState([
-    "$ whoami",
-    aboutMe.email || "anonymous@user.com",
-    "",
-    "$ cat contact.txt",
-    "Ready to collaborate on infrastructure projects,",
-    "discuss homelab setups, or share DevOps insights.",
-    "",
-    "$ echo $STATUS",
-    "Available for consulting and collaboration",
-    "",
-  ]);
+const skillImages = skillsData.flatMap((categoryObj) => {
 
-  const [inputValue, setInputValue] = useState("");
+  if (!Array.isArray(categoryObj?.skillImage)) return [];
 
-  const handleCommand = (e: React.FormEvent) => {
-    e.preventDefault();
-    const cleanInput = inputValue.trim();
-    if (!cleanInput) return;
+  return categoryObj.skillImage
+    .map((s) => getContentfulAssetUrl(s))
+    .filter((url): url is string => url != null);
+});
 
-    const newLines = [...terminalLines, `$ ${cleanInput}`];
-    const command = cleanInput.toLowerCase();
 
-    if (command === "help") {
-      newLines.push(
-        "Available commands: help, clear, contact, skills, projects",
-      );
-    } else if (command === "clear") {
-      setTerminalLines([]);
-      setInputValue("");
-      return;
-    } else if (command === "contact") {
-      newLines.push(`Email: ${aboutMe.email || "N/A"}`);
-      newLines.push(`GitHub: ${aboutMe.github || "N/A"}`);
-      newLines.push(`LinkedIn: ${aboutMe.linkedin || "N/A"}`);
-    } else if (command === "skills") {
-      if (skillsData && Array.isArray(skillsData) && skillsData.length > 0) {
-        newLines.push("Initializing Skills Ledger Discovery...");
-        newLines.push("---------------------------------------");
-        skillsData.forEach((block) => {
-          const categoryLabel = block.category || "General";
-          const skillsList = Array.isArray(block.skillsName)
-            ? block.skillsName.join(", ")
-            : "No skills indexed";
-          newLines.push(`${categoryLabel}: ${skillsList}`);
-        });
-      } else {
-        newLines.push("Skills database index is currently offline or empty.");
-      }
-    } else if (command === "projects") {
-      if (
-        projectsData &&
-        Array.isArray(projectsData) &&
-        projectsData.length > 0
-      ) {
-        newLines.push("Retrieving Project Manifest Indices...");
-        newLines.push("---------------------------------------");
-        projectsData.forEach((project) => {
-          const name = project.projectName || "Unnamed Repository";
-          const desc = project.projectDescription || "No description provided.";
-          const statusIndicator = project.status ? "[ACTIVE]" : "[ARCHIVED]";
-
-          newLines.push(`→ ${name} ${statusIndicator}`);
-          newLines.push(`  Desc: ${desc}`);
-          if (project.techStack && Array.isArray(project.techStack)) {
-            newLines.push(`  Stack: ${project.techStack.join(", ")}`);
-          }
-          newLines.push("");
-        });
-      } else {
-        newLines.push(
-          "No active repositories or projects found in this registry.",
-        );
-      }
-    } else {
-      newLines.push(`Command not found: ${cleanInput}`);
-      newLines.push('Type "help" for available commands');
-    }
-
-    newLines.push("");
-    setTerminalLines(newLines);
-    setInputValue("");
-  };
 
   return (
     <section className="py-12 md:py-16">
@@ -151,18 +79,20 @@ export function ContactSection({
             </h2>
           </div>
           <p className="text-slate-400 font-mono text-sm">
-            {">"} ssh admin@domiadi.com
+            {">"} ssh {aboutMe.email}
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-6">
           <Card className="card-glow scan-line bg-slate-900/40 border-slate-800">
-            <InterectiveTerminal
-              aboutMe={aboutMe}
-              skillsData={Array.isArray(skillsData) ? skillsData : [skillsData]}
-              projectsData={
-                Array.isArray(projectsData) ? projectsData : [projectsData]
-              }
+            <DomeGallery
+              images={skillImages}
+              fit={0.8}
+              minRadius={600}
+              maxVerticalRotationDeg={0}
+              segments={34}
+              dragDampening={2}
+              grayscale
             />
           </Card>
 

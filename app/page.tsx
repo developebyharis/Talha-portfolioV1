@@ -34,7 +34,6 @@ export default async function Home() {
     FetchCategories(),
     FetchExperience(),
   ]);
-
   return (
     <main className="min-h-screen">
       
@@ -57,7 +56,6 @@ export default async function Home() {
       <ContactSection
         aboutMe={aboutMe}
         skillsData={Array.isArray(skills) ? skills : [skills]}
-        projectsData={Array.isArray(projects) ? projects : [projects]}
       />
       <Footer />
     </main>
