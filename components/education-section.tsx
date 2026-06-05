@@ -36,7 +36,7 @@ export function EducationSection({ data }: { data: EducationItem[] }) {
             const isLast = idx === data.length - 1;
 
             return (
-              <bg key={idx} className="contents">
+              <div key={idx} className="contents">
                 {/* Education Milestone Card */}
                 <Card
                   className={`md:col-span-1 min-h-[175px] flex flex-col justify-between transition-all backdrop-blur-sm
@@ -107,7 +107,7 @@ export function EducationSection({ data }: { data: EducationItem[] }) {
                     </div>
                   </div>
                 )}
-              </bg>
+              </div>
             );
           })}
         </div>
