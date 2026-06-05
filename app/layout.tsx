@@ -13,18 +13,37 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+
 export const metadata: Metadata = {
-  title: "Domi Adiwijaya | System Engineer & HomeLAB Specialist",
+  title: "Talha Khan | Embeded System Engineer",
   description:
-    "Server dashboard-inspired portfolio showcasing expertise in infrastructure engineering, Kubernetes, DevOps automation, and home lab architecture. Explore projects, skills, and system metrics.",
-  keywords:
-    "system engineer, homelab, kubernetes, devops, infrastructure, server administration, docker, automation",
-  authors: [{ name: "Domi Adiwijaya" }],
+    "Terminal-inspired portfolio showcasing low-level firmware engineering, embedded systems (STM32, FreeRTOS), bare-metal computing, and multi-node HomeLAB virtualization clusters.",
+  keywords: [
+    "embedded systems",
+    "firmware engineering",
+    "stm32",
+    "freertos",
+    "bare-metal",
+    "homelab",
+    "kubernetes",
+    "microservices",
+    "systems engineer",
+    "nextjs 15",
+  ],
+  authors: [{ name: "Talha Khan" }],
   openGraph: {
-    title: "Domi Adiwijaya | System Engineer & HomeLAB Specialist",
+    title: "Talha Khan | Embeded System Engineer",
     description:
-      "Explore my server dashboard portfolio featuring infrastructure projects and system engineering expertise.",
+      "Explore my terminal-inspired systems portfolio featuring embedded firmware, bare-metal development, and advanced cluster virtualization.",
     type: "website",
+    url: "https://engineertalha.vercel.app/", 
+    siteName: "Talha Khan Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Talha Khan | Embeded System Engineer",
+    description:
+      "Terminal-inspired portfolio showcasing embedded systems, FreeRTOS, and multi-node HomeLAB virtualization clusters.",
   },
 };
 
